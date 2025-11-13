@@ -1,12 +1,15 @@
-import { getGeocoding } from "./api/openmeteo.ts";
+import { getCurrentWeather } from "./api/openmeteo.ts";
 
 function App() {
 
-  getGeocoding("goi%C3%A2nia");
+  //Teste
+  const city = "Goiânia";
+  const currentWeather = getCurrentWeather(city);
+  console.log(currentWeather);
 
   return (
     <div>
-      <p>teste</p>
+      <h1>Teste Console</h1>
     </div>
   );
 }
