@@ -1,15 +1,18 @@
-import { getCurrentWeather } from "./api/openmeteo.ts";
+import { useQuery } from "@tanstack/react-query";
+import { getCurrentWeather } from "./api/openmeteo";
+
 
 function App() {
 
-  //Teste
-  const city = "Goiânia";
-  const currentWeather = getCurrentWeather(city);
-  console.log(currentWeather);
+const { data } = useQuery({
+  queryKey: ["cityName"],
+  queryFn: ()=> getCurrentWeather("Goiânia")
+})
 
   return (
     <div>
-      <h1>Teste Console</h1>
+      <h1>Teste</h1>
+      <p>{JSON.stringify(data)}</p>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { fetchWeatherApi } from "openmeteo";
+import { currentWeatherSchema } from "../schemas/weatherSchema.ts";
 
 function formatToUrlParameter(cityName: string): string {
   const encodedCityName = encodeURIComponent(cityName);
@@ -18,9 +19,9 @@ async function getGeocoding(cityName: string) {
   return dataGeo;
 }
 
-export async function getCurrentWeather(nomeDacidade: string) {
-  const cityName = formatToUrlParameter(nomeDacidade);
-  const dataGeocoding = await getGeocoding(cityName);
+export async function getCurrentWeather(cityName: string) {
+  const cityNameFormat = formatToUrlParameter(cityName);
+  const dataGeocoding = await getGeocoding(cityNameFormat);
   const { latitude, longitude } = dataGeocoding;
 
   const params = {
@@ -53,5 +54,5 @@ export async function getCurrentWeather(nomeDacidade: string) {
   }
   console.log(weatherDataFormated);
 
-  return weatherDataFormated;
+  return currentWeatherSchema.parse(weatherDataFormated);
 }
