@@ -52,7 +52,6 @@ export async function getCurrentWeather(cityName: string) {
     relativeHumidity: weatherData.current.relative_humidity_2m,
     rain: weatherData.current.rain
   }
-  console.log(weatherDataFormated);
 
   return currentWeatherSchema.parse(weatherDataFormated);
 }
